@@ -378,7 +378,7 @@ Database timeout. CPU usage reached 98%. Services unavailable.
 
 GitHub: https://github.com/chandan-st
 
-LinkedIn: https://www.linkedin.com/
+LinkedIn: www.linkedin.com/in/chandan-s-t-0585222a1
 
 ---
 
