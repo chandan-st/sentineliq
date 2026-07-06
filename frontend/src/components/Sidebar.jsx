@@ -19,11 +19,7 @@ const menu = [
     icon: AlertTriangle,
     path: "/incidents",
   },
-  {
-    title: "AI Analysis",
-    icon: BrainCircuit,
-    path: "/analysis",
-  },
+  
   {
     title: "Reports",
     icon: FileBarChart,
