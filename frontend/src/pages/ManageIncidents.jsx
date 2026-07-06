@@ -9,6 +9,7 @@ import { Trash2 } from "lucide-react";
 import {
   getIncidents,
   deleteIncident,
+  resolveIncident,
 } from "../api/incidentApi";
 
 export default function ManageIncidents() {
@@ -29,6 +30,24 @@ export default function ManageIncidents() {
       onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: ["incidents"],
+        });
+      },
+    });
+
+  const resolveMutation =
+    useMutation({
+      mutationFn: resolveIncident,
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ["incidents"],
+        });
+
+        queryClient.invalidateQueries({
+          queryKey: ["metrics"],
+        });
+
+        queryClient.invalidateQueries({
+          queryKey: ["recent"],
         });
       },
     });
@@ -106,28 +125,48 @@ export default function ManageIncidents() {
                 </td>
 
                 <td className="p-5">
-                  {item.status}
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                      item.status === "Resolved"
+                        ? "bg-green-600"
+                        : "bg-yellow-600"
+                    }`}
+                  >
+                    {item.status}
+                  </span>
                 </td>
 
                 <td className="p-5">
-                  <button
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          "Delete this incident?"
-                        )
-                      ) {
-                        deleteMutation.mutate(
-                          item.id
-                        );
-                      }
-                    }}
-                    disabled={deleteMutation.isPending}
-                    className="flex items-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 px-4 py-2 rounded-xl text-white transition"
-                  >
-                    <Trash2 size={16} />
-                    Delete
-                  </button>
+                  <div className="flex items-center gap-3">
+                    {item.status !== "Resolved" && (
+                      <button
+                        onClick={() =>
+                          resolveMutation.mutate(item.id)
+                        }
+                        className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-xl text-white mr-3"
+                      >
+                        Resolve
+                      </button>
+                    )}
+                    <button
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Delete this incident?"
+                          )
+                        ) {
+                          deleteMutation.mutate(
+                            item.id
+                          );
+                        }
+                      }}
+                      disabled={deleteMutation.isPending}
+                      className="flex items-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 px-4 py-2 rounded-xl text-white transition"
+                    >
+                      <Trash2 size={16} />
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

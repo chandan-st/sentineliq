@@ -23,6 +23,16 @@ export const deleteIncident = async (
   return res.data;
 };
 
+export const resolveIncident = async (
+  id
+) => {
+  const res = await api.put(
+    `/api/incidents/${id}/resolve`
+  );
+
+  return res.data;
+};
+
 export const getIncidents = async () => {
   const res = await api.get(
     "/api/incidents"

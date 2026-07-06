@@ -106,6 +106,32 @@ def update(
     return db_incident
 
 
+@router.put(
+    "/{incident_id}/resolve",
+    response_model=IncidentResponse,
+)
+def resolve_incident(
+    incident_id: int,
+    db: Session = Depends(get_db),
+):
+    incident = (
+        db.query(Incident)
+        .filter(Incident.id == incident_id)
+        .first()
+    )
+
+    if not incident:
+        raise HTTPException(
+            status_code=404,
+            detail="Incident not found",
+        )
+
+    incident.status = "Resolved"
+
+    db.commit()
+    db.refresh(incident)
+
+    return incident
 @router.delete("/{incident_id}")
 def delete(
     incident_id: int,
