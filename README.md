@@ -370,7 +370,7 @@ Due to memory limitations of free cloud instances, AI inference using **Llama3**
 ## Chandan S T
 
 - GitHub: https://github.com/chandan-st
-- LinkedIn: www.linkedin.com/in/chandan-s-t
+- LinkedIn:https://www.linkedin.com/in/chandan-s-t-0585222a1/
 
 ---
 
