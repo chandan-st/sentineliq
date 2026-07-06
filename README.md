@@ -1,74 +1,94 @@
-# SentinelIQ 🛡️
+# 🛡️ SentinelIQ
+### AI-Powered Incident Intelligence Platform using Llama3 and RAG
 
-> AI-Powered SaaS Incident Intelligence Platform built with FastAPI, PostgreSQL, React, Docker, and Llama3.
-
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.116-green)
-![React](https://img.shields.io/badge/React-19-blue)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
-![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python" />
+  <img src="https://img.shields.io/badge/FastAPI-Backend-green?style=for-the-badge&logo=fastapi" />
+  <img src="https://img.shields.io/badge/React-Frontend-blue?style=for-the-badge&logo=react" />
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge&logo=postgresql" />
+  <img src="https://img.shields.io/badge/AI-Llama3-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/RAG-FAISS-purple?style=for-the-badge" />
+</p>
 
 ---
 
 # 📌 Overview
 
-SentinelIQ is an AI-powered Incident Intelligence Platform that automatically detects, classifies, and manages incidents using Large Language Models (LLMs).
+**SentinelIQ** is an AI-powered Incident Intelligence Platform designed to assist organizations in detecting, analyzing, and managing operational incidents using **Large Language Models (LLMs)** and **Retrieval-Augmented Generation (RAG)**.
 
-The platform analyzes system logs and events, determines severity levels, generates remediation recommendations, and provides operational insights through an analytics dashboard.
+The platform analyzes incident logs, identifies root causes, estimates business impact, generates contextual recommendations, and maintains a complete incident history for future reference.
 
 ---
 
 # 🚀 Features
 
-## 🔐 Authentication
+### 🤖 AI Incident Analysis
+- Incident classification using **Llama3**
+- Root cause identification
+- Risk score generation
+- Business impact analysis
+- Intelligent recommendations
+
+### 🧠 Retrieval-Augmented Generation (RAG)
+- Semantic similarity search using **Sentence Transformers**
+- Incident knowledge base retrieval
+- Context-aware recommendations
+- Historical incident matching
+
+### 📊 Dashboard
+- Total incidents
+- Open incidents
+- Critical incidents
+- Incident severity distribution
+- Recent incidents overview
+
+### 📂 Incident Management
+- Create incidents automatically
+- View incident details
+- Delete incidents
+- Track incident status
+
+### 🕒 Analysis History
+- Stores:
+  - Event
+  - AI Summary
+  - Root Cause
+  - Recommendations
+  - Business Impact
+  - Risk Score
+  - Timestamp
+
+### 📑 Reports
+- Export reports as CSV
+- Incident analytics
+- Historical tracking
+
+### 🔐 Authentication
 - User Registration
-- User Login
+- Login System
 - JWT Authentication
-
-## 🚨 Incident Management
-- Create Incidents
-- View Incidents
-- Update Incident Status
-- Incident Deduplication
-- Incident Tracking Dashboard
-
-## 🤖 AI-Powered Incident Analysis
-- Automatic Incident Detection
-- Severity Classification
-- Risk Score Generation
-- Root Cause Summary
-- AI-generated Recommendations
-- Powered by Llama3 (Ollama)
-
-## 📊 Dashboard Analytics
-- Total Incidents
-- Open vs Resolved Incidents
-- Severity Distribution
-- Recent Incidents
 
 ---
 
 # 🏗️ System Architecture
 
 ```text
-                +-------------------+
-                |   React Frontend  |
-                +-------------------+
-                          |
-                          |
-                          ▼
-                +-------------------+
-                |   FastAPI Backend |
-                +-------------------+
-                          |
-          --------------------------------
-          |                              |
-          ▼                              ▼
-+-------------------+        +-------------------+
-|    PostgreSQL     |        |   Ollama Llama3   |
-|     Database      |        |     AI Engine     |
-+-------------------+        +-------------------+
+┌──────────────────┐
+│     Frontend     │
+│      React       │
+└────────┬─────────┘
+         │ REST API
+         ▼
+┌──────────────────┐
+│     FastAPI      │
+│      Backend     │
+└────────┬─────────┘
+         │
+         ├────────► PostgreSQL
+         │
+         ├────────► FAISS Vector DB
+         │
+         └────────► Ollama + Llama3
 ```
 
 ---
@@ -76,20 +96,20 @@ The platform analyzes system logs and events, determines severity levels, genera
 # 🛠️ Tech Stack
 
 ## Frontend
-- React
+- React.js
 - Vite
 - Tailwind CSS
 - Axios
 - React Query
-- Recharts
-- Framer Motion
-- React Hot Toast
+- React Router
+- Lucide Icons
 
 ## Backend
 - FastAPI
 - SQLAlchemy
 - Pydantic
 - JWT Authentication
+- Alembic
 
 ## Database
 - PostgreSQL
@@ -97,16 +117,20 @@ The platform analyzes system logs and events, determines severity levels, genera
 ## AI & Machine Learning
 - Ollama
 - Llama3
+- Sentence Transformers
+- FAISS
+- RAG Pipeline
 
-## DevOps
-- Docker
+## Tools & DevOps
+- Git
 - GitHub
-- Jenkins (Upcoming)
-- CI/CD Pipeline (Upcoming)
+- Docker
+- Render
+- Vercel
 
 ---
 
-# 📂 Project Structure
+# 📁 Project Structure
 
 ```text
 sentineliq/
@@ -118,91 +142,31 @@ sentineliq/
 │   │   ├── models/
 │   │   ├── routers/
 │   │   ├── schemas/
-│   │   └── services/
+│   │   ├── services/
+│   │   └── main.py
 │   │
+│   ├── incident_index.faiss
+│   ├── incident_metadata.pkl
 │   └── requirements.txt
 │
 ├── frontend/
-│
-├── docker-compose.yml
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── layouts/
+│   │   └── App.jsx
+│   │
+│   └── package.json
 │
 └── README.md
 ```
 
 ---
 
-# ⚡ API Endpoints
+# ⚙️ Installation
 
-## Authentication
-
-```http
-POST /api/auth/register
-POST /api/auth/login
-```
-
----
-
-## Incidents
-
-```http
-GET    /api/incidents
-POST   /api/incidents
-PUT    /api/incidents/{id}
-DELETE /api/incidents/{id}
-```
-
----
-
-## AI Analysis
-
-```http
-POST /api/events/analyze
-```
-
-Automatically:
-
-- Analyzes logs
-- Classifies severity
-- Generates recommendations
-- Creates incidents in PostgreSQL
-
----
-
-## Dashboard
-
-```http
-GET /api/dashboard/metrics
-GET /api/dashboard/recent
-GET /api/dashboard/severity
-```
-
----
-
-# 🧠 AI Workflow
-
-```text
-Logs / Events
-      ↓
-Llama3 Analysis
-      ↓
-Severity Classification
-      ↓
-Risk Score Generation
-      ↓
-Recommendations
-      ↓
-Automatic Incident Creation
-      ↓
-PostgreSQL Storage
-      ↓
-Dashboard Analytics
-```
-
----
-
-# 🚀 Running Locally
-
-## 1. Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/chandan-st/sentineliq.git
@@ -211,34 +175,29 @@ cd sentineliq
 
 ---
 
-## 2. Start PostgreSQL
-
-```bash
-docker compose up -d
-```
-
----
-
-## 3. Start Backend
+# Backend Setup
 
 ```bash
 cd backend
 
-python3 -m venv venv
+python -m venv venv
+
 source venv/bin/activate
+# Windows:
+# venv\Scripts\activate
 
 pip install -r requirements.txt
 
-python -m uvicorn app.main:app --reload
+uvicorn app.main:app --reload
 ```
 
-Backend:
+Backend runs on:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-Swagger Docs:
+Swagger Documentation:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -246,10 +205,52 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 4. Start Ollama
+# Frontend Setup
 
 ```bash
-ollama serve
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+Frontend runs on:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# Environment Variables
+
+## Backend `.env`
+
+```env
+DATABASE_URL=postgresql://username:password@localhost/sentineliq
+SECRET_KEY=your_secret_key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+OLLAMA_URL=http://127.0.0.1:11434/api/generate
+```
+
+---
+
+# Frontend `.env`
+
+```env
+VITE_API_URL=http://127.0.0.1:8000
+```
+
+---
+
+# Running Ollama
+
+Install Ollama:
+
+```bash
+brew install ollama
 ```
 
 Pull Llama3:
@@ -258,136 +259,125 @@ Pull Llama3:
 ollama pull llama3
 ```
 
----
-
-## 5. Start Frontend
+Start Ollama:
 
 ```bash
-cd frontend
-
-npm install
-npm run dev
+ollama serve
 ```
 
-Frontend:
+---
+
+# AI Workflow
 
 ```text
-http://localhost:5173
+Incident Event
+      │
+      ▼
+Llama3 Analysis
+      │
+      ▼
+RAG Context Retrieval
+      │
+      ▼
+Root Cause Analysis
+      │
+      ▼
+Recommendations
+      │
+      ▼
+Business Impact Assessment
+      │
+      ▼
+Store in History
 ```
 
 ---
 
-# 📈 Current Features Implemented
+# API Endpoints
 
-✅ Authentication System
+## Authentication
 
-✅ JWT Authorization
-
-✅ Incident CRUD APIs
-
-✅ AI Incident Analysis using Llama3
-
-✅ Automatic Incident Creation
-
-✅ Incident Deduplication
-
-✅ Dashboard Analytics APIs
-
-✅ Dockerized PostgreSQL
-
-✅ GitHub Integration
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| POST | /register | Register User |
+| POST | /login | Login User |
 
 ---
 
-# 📌 Sample AI Incident Analysis
+## Incidents
 
-### Input
+| Method | Endpoint |
+|--------|-----------|
+| POST | /api/incidents/check |
+| GET | /api/incidents |
+| DELETE | /api/incidents/{id} |
+
+---
+
+## History
+
+| Method | Endpoint |
+|--------|-----------|
+| GET | /api/history |
+
+---
+
+## Dashboard
+
+| Method | Endpoint |
+|--------|-----------|
+| GET | /api/dashboard |
+
+---
+
+# Screenshots
+
+Add screenshots here:
 
 ```text
-Database timeout. CPU usage reached 98%. Services unavailable.
-```
-
-### Output
-
-```json
-{
-  "title": "Database Timeout",
-  "severity": "High",
-  "risk_score": 80,
-  "summary": "CPU usage reached 98%, services unavailable due to database timeout.",
-  "recommendations": [
-    {
-      "step": "Increase database instance size"
-    },
-    {
-      "step": "Optimize database queries"
-    },
-    {
-      "step": "Implement connection pooling"
-    }
-  ]
-}
+Dashboard Screenshot
+Incident Analysis Screenshot
+History Screenshot
+Reports Screenshot
 ```
 
 ---
 
-# 📊 Dashboard Metrics Example
+# Future Enhancements
 
-```json
-{
-  "total_incidents": 3,
-  "critical": 2,
-  "high": 1,
-  "medium": 0,
-  "low": 0,
-  "open": 3,
-  "resolved": 0
-}
-```
-
----
-
-# 🔮 Future Enhancements
-
-- Real-Time Incident Monitoring
-- WebSocket Notifications
-- Executive PDF Reports
-- Multi-Tenant Support
+- Email Alerts
+- Real-Time Monitoring
+- Kafka Integration
 - Kubernetes Deployment
-- Jenkins CI/CD Pipeline
-- Prometheus Integration
-- Grafana Dashboards
-- Predictive Incident Intelligence
+- Multi-Tenant Architecture
+- Redis Caching
+- Incident Prediction
+- AI Chat Assistant
+- Role-Based Access Control
 
 ---
 
-# 💼 Resume Highlights
+# Deployment Note
 
-- Built an AI-powered Incident Intelligence Platform using FastAPI, PostgreSQL, Docker, and Llama3.
-- Designed an automated incident detection and severity classification engine.
-- Implemented AI-generated remediation recommendations.
-- Developed analytics dashboard APIs and incident deduplication engine.
-- Integrated local LLMs (Llama3 via Ollama) for intelligent incident analysis.
-- Designed scalable REST APIs and containerized services using Docker.
+The application is fully functional in a local environment.
+
+Due to memory limitations of free cloud instances, AI inference using **Llama3**, **Sentence Transformers**, and **FAISS** is demonstrated locally. The platform can be deployed to production environments with higher-memory compute instances.
 
 ---
 
-# 👨‍💻 Author
+# Author
 
-**Chandan S T**
+## Chandan S T
 
-GitHub: https://github.com/chandan-st
-
-LinkedIn: www.linkedin.com/in/chandan-s-t-0585222a1
-
----
-
-# ⭐ Support
-
-If you like this project, consider giving it a ⭐ on GitHub!
+- GitHub: https://github.com/chandan-st
+- LinkedIn: www.linkedin.com/in/chandan-s-t
 
 ---
 
-# 📜 License
+# License
 
-This project is licensed under the MIT License.
+This project is developed for educational and research purposes.
+
+---
+
+# ⭐ If you found this project useful, consider giving it a star.
