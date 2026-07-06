@@ -1,0 +1,12 @@
+event,severity,affected_service,root_cause,recommendation,business_impact,resolution_time_minutes,tags
+Database connection pool exhausted,Critical,PostgreSQL,Connection leak,"Increase pool size; investigate long-running queries; restart application",Payment transactions unavailable,45,database postgres pool timeout
+Authentication service certificate expired,Critical,Identity Service,Expired TLS certificate,"Renew certificate; restart ingress controller; validate certificate rotation policy",Users unable to log in,60,authentication tls certificate
+API gateway latency exceeded SLA,High,API Gateway,Downstream service degradation,"Inspect dependency latency; scale services; review tracing metrics",Degraded customer experience,40,api gateway latency microservice
+Redis replication lag exceeded threshold,Medium,Cache Cluster,Network latency,"Verify network health; restart replica; inspect replication backlog",Increased API latency,25,redis replication cache network
+Kubernetes pod crash loop detected,High,Order Service,Application configuration error,"Inspect pod logs; rollback deployment; validate environment variables",Partial service outage,30,kubernetes pod crashloop deployment
+CPU utilization exceeded 95 percent,Critical,Application Server,Runaway process,"Identify high CPU processes; restart affected service; scale compute resources",Application latency and service disruption,25,cpu high utilization saturation
+Application threads consuming excessive CPU,High,Microservice Cluster,Thread deadlock,"Capture thread dumps; restart service; investigate code changes",Slow response times,40,cpu thread deadlock performance
+Kubernetes node CPU exhausted,Critical,Kubernetes Cluster,Resource exhaustion,"Drain overloaded node; increase node capacity; adjust resource limits",Pod evictions and service degradation,30,kubernetes cpu node exhaustion
+Container CPU throttling detected,High,Container Platform,Insufficient CPU limits,"Increase CPU limits; review autoscaling; optimize workloads",Application performance degradation,20,container cpu throttling
+Database server CPU spike detected,High,PostgreSQL,Long running queries,"Identify expensive queries; terminate blocked sessions; tune indexes",Database response delays,35,database cpu spike queries
+Autoscaler failed during CPU surge,Critical,Kubernetes Cluster,Autoscaler configuration issue,"Review autoscaling configuration; manually scale deployment; inspect cluster metrics",Service outage risk,45,cpu autoscaling failure

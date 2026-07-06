@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.db.dependencies import get_db
 from app.schemas.event import EventRequest
 from app.services.ai_service import analyze_incident
+from app.services.history_service import save_analysis
 from app.models.incident import Incident
 
 router = APIRouter(
@@ -31,6 +32,11 @@ def analyze(
     )
 
     if existing_incident:
+        save_analysis(
+            db,
+            event.message,
+            ai_result,
+        )
         return {
             "incident_id": existing_incident.id,
             "title": existing_incident.title,
@@ -52,6 +58,12 @@ def analyze(
     db.add(incident)
     db.commit()
     db.refresh(incident)
+
+    save_analysis(
+        db,
+        event.message,
+        ai_result,
+    )
 
     return {
         "incident_id": incident.id,
